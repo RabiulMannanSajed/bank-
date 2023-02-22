@@ -54,8 +54,7 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const previousBalanceText = balanceTotal.innerText;
 
     const previousDepositTotal = parseFloat(previousBalanceText);
-    const newBalanceTotal = previousDepositTotal - newWithdrawAmount; /// this line giving error 
-
+    const newBalanceTotal = previousDepositTotal - newWithdrawAmount;
     balanceTotal.innerText = newBalanceTotal;
 
     withdrawInput.value = '';
