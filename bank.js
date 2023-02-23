@@ -1,4 +1,4 @@
-
+/// 27-7 
 // for deposit part
 function getInputValue(inputId) {
     const inputField = document.getElementById(inputId);
@@ -9,22 +9,27 @@ function getInputValue(inputId) {
     inputField.value = ' ';
     return amountValue;
 }
+function updateTotalField(totalFieldId, newDepositAmount) {
+    const depositTotal = document.getElementById(totalFieldId);
 
+    const previousDepositText = (depositTotal.innerText);
+    const previousDepositAmount = parseFloat(previousDepositText);
+    // const updatedDepositAmount = (previousDepositAmount + newDepositAmount);
+
+    depositTotal.innerText = (previousDepositAmount + newDepositAmount);
+}
 
 
 document.getElementById('deposit-button').addEventListener('click', function () {
 
     const newDepositAmount = getInputValue('deposit-input');
 
-    const depositTotal = document.getElementById('deposit-total');
-
-    console.log(depositTotal.innerText);
-
-    const previousDepositText = (depositTotal.innerText);
-    const previousDepositAmount = parseFloat(previousDepositText);
-    const updatedDepositAmount = (previousDepositAmount + newDepositAmount);
-
-    depositTotal.innerText = updatedDepositAmount;
+    /*  const depositTotal = document.getElementById('deposit-total');
+     console.log(depositTotal.innerText);
+     const previousDepositText = (depositTotal.innerText);
+     const previousDepositAmount = parseFloat(previousDepositText);
+     const updatedDepositAmount = (previousDepositAmount + newDepositAmount); */
+    updateTotalField('deposit-total', newDepositAmount);
     ///Balance part 
 
     const balanceTotal = document.getElementById('balance-total');
@@ -37,9 +42,9 @@ document.getElementById('deposit-button').addEventListener('click', function () 
 
 document.getElementById('withdraw-button').addEventListener('click', function () {
 
-    // const withdrawInput = document.getElementById('withdraw-input');
-    // const withdrawAmountText = withdrawInput.value;
-    // const newWithdrawAmount = parseFloat(withdrawAmountText);
+    /* const withdrawInput = document.getElementById('withdraw-input');
+    const withdrawAmountText = withdrawInput.value;
+    const newWithdrawAmount = parseFloat(withdrawAmountText); */
     const newWithdrawAmount = getInputValue('withdraw-input');
 
     console.log(newWithdrawAmount);
