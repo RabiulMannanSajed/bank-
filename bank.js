@@ -28,23 +28,30 @@ function updateBalance(amount, isAdd) {
         balanceTotal.innerText = balanceTotalAmount + amount; // newDepositAmount pass by the parameter 
     }
     else {
-        if ()
-            balanceTotal.innerText = balanceTotalAmount - amount;
+        // if ()
+        balanceTotal.innerText = balanceTotalAmount - amount;
     }
 }
 
 document.getElementById('deposit-button').addEventListener('click', function () {
 
     const newDepositAmount = getInputValue('deposit-input');
+    if (newDepositAmount > 0) {
+        updateTotalField('deposit-total', newDepositAmount);
+        updateBalance(newDepositAmount, true);
+    }
+    else {
+        alert('deposit money always have to Positive');
+    }
 
     /*  const depositTotal = document.getElementById('deposit-total');
      console.log(depositTotal.innerText);
      const previousDepositText = (depositTotal.innerText);
      const previousDepositAmount = parseFloat(previousDepositText);
      const updatedDepositAmount = (previousDepositAmount + newDepositAmount); */
-    updateTotalField('deposit-total', newDepositAmount);
+
     ///Balance part 
-    updateBalance(newDepositAmount, true); // true means addition 
+    // true means addition 
     /* const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
     const balanceTotalAmount = parseFloat(balanceTotalText);
@@ -60,6 +67,14 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const newWithdrawAmount = parseFloat(withdrawAmountText); */
     const newWithdrawAmount = getInputValue('withdraw-input');
 
+    if (newWithdrawAmount > 0) {
+        updateTotalField('withdraw-total', newWithdrawAmount);
+        updateBalance(newWithdrawAmount, false); // false means subtruction 
+    }
+    else {
+        alert('deposit money always have to Positive');
+    }
+
     // set withdraw total
     /* const withdrawTotal = document.getElementById('withdraw-total');
     const previousWithdrawText = withdrawTotal.innerText;
@@ -69,7 +84,6 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
     console.log(newWithdrawTotal);
     withdrawTotal.innerText = newWithdrawTotal; */
-    updateTotalField('withdraw-total', newWithdrawAmount);
 
     // update balance
     /*  const balanceTotal = document.getElementById('balance-total');
@@ -78,5 +92,4 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
      const previousDepositTotal = parseFloat(previousBalanceText);
      const newBalanceTotal = previousDepositTotal - newWithdrawAmount;
      balanceTotal.innerText = newBalanceTotal; */
-    updateBalance(newWithdrawAmount, false); // false means subtruction 
 })
