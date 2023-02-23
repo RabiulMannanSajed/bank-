@@ -1,4 +1,3 @@
-/// 27-7 
 // for deposit part
 function getInputValue(inputId) {
     const inputField = document.getElementById(inputId);
