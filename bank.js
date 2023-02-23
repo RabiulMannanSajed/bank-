@@ -1,13 +1,13 @@
 
 // for deposit part
 function getInputValue(inputId) {
-    const depositInput = document.getElementById(inputId);
+    const inputField = document.getElementById(inputId);
 
-    const newDepositText = depositInput.value;
-    const newDepositAmount = parseFloat(newDepositText);
+    const inputAmountText = inputField.value;
+    const amountValue = parseFloat(inputAmountText);
 
-    depositInput.value = ' ';
-    return newDepositAmount;
+    inputField.value = ' ';
+    return amountValue;
 }
 
 
