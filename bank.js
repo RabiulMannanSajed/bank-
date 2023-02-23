@@ -16,13 +16,21 @@ function updateTotalField(totalFieldId, newDepositAmount) {
     const previousTotal = parseFloat(textTotal);
     totalAmount.innerText = (previousTotal + newDepositAmount);
 }
+function getCurrentBalance() {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const balanceTotalAmount = parseFloat(balanceTotalText);
+    return balanceTotalAmount;
+}
 
 // Update Balance
 function updateBalance(amount, isAdd) {
     const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const balanceTotalAmount = parseFloat(balanceTotalText);
-
+    /*
+     const balanceTotalText = balanceTotal.innerText;
+     const balanceTotalAmount = parseFloat(balanceTotalText);
+*/
+    const balanceTotalAmount = getCurrentBalance();
     // to make the function useful for 2 part send the true and false  
     if (isAdd == true) {
         balanceTotal.innerText = balanceTotalAmount + amount; // newDepositAmount pass by the parameter 
@@ -66,13 +74,14 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const withdrawAmountText = withdrawInput.value;
     const newWithdrawAmount = parseFloat(withdrawAmountText); */
     const newWithdrawAmount = getInputValue('withdraw-input');
+    const currentBalance = getCurrentBalance();
 
-    if (newWithdrawAmount > 0) {
+    if (newWithdrawAmount > 0 && newWithdrawAmount < currentBalance) {
         updateTotalField('withdraw-total', newWithdrawAmount);
         updateBalance(newWithdrawAmount, false); // false means subtruction 
     }
     else {
-        alert('deposit money always have to Positive');
+        alert('check Your balance');
     }
 
     // set withdraw total
