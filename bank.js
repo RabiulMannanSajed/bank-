@@ -1,12 +1,20 @@
-document.getElementById('deposit-button').addEventListener('click', function () {
 
-
-    ///deposit part 
-    const depositInput = document.getElementById('deposit-input');
+// for deposit part
+function getInputValue(inputId) {
+    const depositInput = document.getElementById(inputId);
 
     const newDepositText = depositInput.value;
     const newDepositAmount = parseFloat(newDepositText);
-    // console.log(depositAmount);
+
+    depositInput.value = ' ';
+    return newDepositAmount;
+}
+
+
+
+document.getElementById('deposit-button').addEventListener('click', function () {
+
+    const newDepositAmount = getInputValue('deposit-input');
 
     const depositTotal = document.getElementById('deposit-total');
 
@@ -17,10 +25,6 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     const updatedDepositAmount = (previousDepositAmount + newDepositAmount);
 
     depositTotal.innerText = updatedDepositAmount;
-    depositInput.value = ' ';
-
-
-
     ///Balance part 
 
     const balanceTotal = document.getElementById('balance-total');
@@ -31,12 +35,13 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     balanceTotal.innerText = currentBalance;
 })
 
-
 document.getElementById('withdraw-button').addEventListener('click', function () {
 
-    const withdrawInput = document.getElementById('withdraw-input');
-    const withdrawAmountText = withdrawInput.value;
-    const newWithdrawAmount = parseFloat(withdrawAmountText);
+    // const withdrawInput = document.getElementById('withdraw-input');
+    // const withdrawAmountText = withdrawInput.value;
+    // const newWithdrawAmount = parseFloat(withdrawAmountText);
+    const newWithdrawAmount = getInputValue('withdraw-input');
+
     console.log(newWithdrawAmount);
 
     // set withdraw toatal
@@ -56,8 +61,4 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const previousDepositTotal = parseFloat(previousBalanceText);
     const newBalanceTotal = previousDepositTotal - newWithdrawAmount;
     balanceTotal.innerText = newBalanceTotal;
-
-    withdrawInput.value = '';
-
-
 })
