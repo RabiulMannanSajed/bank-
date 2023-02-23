@@ -9,16 +9,29 @@ function getInputValue(inputId) {
     inputField.value = ' ';
     return amountValue;
 }
+
 function updateTotalField(totalFieldId, newDepositAmount) {
-    const depositTotal = document.getElementById(totalFieldId);
-
-    const previousDepositText = (depositTotal.innerText);
-    const previousDepositAmount = parseFloat(previousDepositText);
-    // const updatedDepositAmount = (previousDepositAmount + newDepositAmount);
-
-    depositTotal.innerText = (previousDepositAmount + newDepositAmount);
+    const totalAmount = document.getElementById(totalFieldId);
+    const textTotal = (totalAmount.innerText);
+    const previousTotal = parseFloat(textTotal);
+    totalAmount.innerText = (previousTotal + newDepositAmount);
 }
 
+// Update Balance
+function updateBalance(amount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const balanceTotalAmount = parseFloat(balanceTotalText);
+
+    // to make the function useful for 2 part send the true and false  
+    if (isAdd == true) {
+        balanceTotal.innerText = balanceTotalAmount + amount; // newDepositAmount pass by the parameter 
+    }
+    else {
+        if ()
+            balanceTotal.innerText = balanceTotalAmount - amount;
+    }
+}
 
 document.getElementById('deposit-button').addEventListener('click', function () {
 
@@ -31,13 +44,13 @@ document.getElementById('deposit-button').addEventListener('click', function () 
      const updatedDepositAmount = (previousDepositAmount + newDepositAmount); */
     updateTotalField('deposit-total', newDepositAmount);
     ///Balance part 
-
-    const balanceTotal = document.getElementById('balance-total');
+    updateBalance(newDepositAmount, true); // true means addition 
+    /* const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
     const balanceTotalAmount = parseFloat(balanceTotalText);
     const currentBalance = balanceTotalAmount + newDepositAmount;
-    // console.log(balanceTotalAmount);
-    balanceTotal.innerText = currentBalance;
+    balanceTotal.innerText = currentBalance; */
+
 })
 
 document.getElementById('withdraw-button').addEventListener('click', function () {
@@ -47,23 +60,23 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     const newWithdrawAmount = parseFloat(withdrawAmountText); */
     const newWithdrawAmount = getInputValue('withdraw-input');
 
-    console.log(newWithdrawAmount);
-
-    // set withdraw toatal
-    const withdrawTotal = document.getElementById('withdraw-total');
+    // set withdraw total
+    /* const withdrawTotal = document.getElementById('withdraw-total');
     const previousWithdrawText = withdrawTotal.innerText;
     const previousWithdrawTotal = parseFloat(previousWithdrawText);
     console.log(previousWithdrawTotal);
 
     const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
     console.log(newWithdrawTotal);
-    withdrawTotal.innerText = newWithdrawTotal;
+    withdrawTotal.innerText = newWithdrawTotal; */
+    updateTotalField('withdraw-total', newWithdrawAmount);
 
     // update balance
-    const balanceTotal = document.getElementById('balance-total');
-    const previousBalanceText = balanceTotal.innerText;
-
-    const previousDepositTotal = parseFloat(previousBalanceText);
-    const newBalanceTotal = previousDepositTotal - newWithdrawAmount;
-    balanceTotal.innerText = newBalanceTotal;
+    /*  const balanceTotal = document.getElementById('balance-total');
+     const previousBalanceText = balanceTotal.innerText;
+ 
+     const previousDepositTotal = parseFloat(previousBalanceText);
+     const newBalanceTotal = previousDepositTotal - newWithdrawAmount;
+     balanceTotal.innerText = newBalanceTotal; */
+    updateBalance(newWithdrawAmount, false); // false means subtruction 
 })
